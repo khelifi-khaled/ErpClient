@@ -1,0 +1,44 @@
+/* Ajoutez ces styles dans votre fichier CSS ou votre section de styles dans le composant Angular */
+
+.container {
+  max-width: 600px; /* Ajustez la largeur maximale selon vos besoins */
+  margin: auto;
+  padding: 20px;
+  background-color: #f8f9fa; /* Couleur de fond */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre légère */
+}
+
+h2 {
+  color: #007bff; /* Couleur du titre */
+}
+
+form {
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #495057; /* Couleur du texte du label */
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ced4da; /* Couleur de la bordure */
+  border-radius: 4px;
+  font-size: 14px;
+  color: #495057; /* Couleur du texte de l'input */
+  background-color: #fff; /* Couleur de fond de l'input */
+  margin-top: 3px;
+}
+
+/* Ajoutez d'autres styles au besoin */
+

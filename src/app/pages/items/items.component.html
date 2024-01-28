@@ -1,0 +1,26 @@
+<div class="container">
+    <input type="text" [(ngModel)]="searchText" (ngModelChange)="onSearchTextChange($event)" placeholder="Search items" class="form-control mb-3">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Item Description</th>
+          <th>Item Price</th>
+          <th>Supplier Item Number</th>
+          <th>Item Number</th>
+          <th> </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of filteredItems">
+          <td>{{ item.itemDiscription }}</td>
+          <td>{{ item.itemPrice | currency:'€':'symbol':'1.2-2' }}</td>
+          <td>{{ item.supplierItemNumber }}</td>
+          <td>{{ item.itemNumber }}</td>
+          <td>
+            <button class="btn-consulter" (click)="consulterItem(item)">Consult</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

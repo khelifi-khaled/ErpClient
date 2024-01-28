@@ -1,0 +1,51 @@
+<div class="container">
+  <h2>Customer Details</h2>
+  <form>
+    <div class="form-group">
+      <label for="CustomerName">Customer Name:</label>
+      <input type="text" id="CustomerName" name="CustomerName" [(ngModel)]="CustomerSelected.customerName" class="form-control" readonly>
+    </div>
+
+    <div class="form-group">
+      <label for="customerCategory">Category:</label>
+      <input type="text" id="customerCategory" name="customerCategory" [(ngModel)]="CustomerSelected.customerCategory.category" class="form-control" readonly>
+    </div>
+
+    <div class="form-group">
+      <label for="customerPayementTerm">Payement Term:</label>
+      <input type="text" id="customerPayementTerm" name="customerPayementTerm" [(ngModel)]="CustomerSelected.customerPayementTerm.payementTerm" class="form-control" readonly>
+    </div>
+
+    <div class="form-group">
+      <label for="customerNumber">Customer Number:</label>
+      <input type="text" id="customerNumber" name="customerNumber" [(ngModel)]="CustomerSelected.customerNumber" class="form-control" readonly>
+    </div>
+
+    <div class="form-group">
+      <label for="customerPhoneNumber">Phone Number:</label>
+      <input type="text" id="customerPhoneNumber" name="customerPhoneNumber" [(ngModel)]="CustomerSelected.customerPhoneNumber" class="form-control" readonly>
+    </div>
+
+    <div class="form-group">
+      <label for="customerFaxNumber">Fax Number:</label>
+      <input type="text" id="customerFaxNumber" name="customerFaxNumber" [(ngModel)]="CustomerSelected.customerFaxNumber" class="form-control" readonly>
+    </div>
+
+    <div class="form-group">
+      <label for="customerEmail">Email:</label>
+      <input type="text" id="customerEmail" name="customerEmail" [(ngModel)]="CustomerSelected.customerEmail" class="form-control" readonly>
+    </div>
+
+    <div class="form-group">
+      <label for="customerVatNumber">Vat Number:</label>
+      <input type="text" id="customerVatNumber" name="customerVatNumber" [(ngModel)]="CustomerSelected.customerVatNumber" class="form-control" readonly>
+    </div>
+
+    <div class="form-group">
+      <label for="registeredVat">registered Vat:</label>
+      <input type="text" id="registeredVat" name="registeredVat" [(ngModel)]="CustomerSelected.registeredVat" class="form-control" readonly>
+    </div>
+
+
+  </form>
+</div>

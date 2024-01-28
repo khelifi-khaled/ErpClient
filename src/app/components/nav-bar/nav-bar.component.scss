@@ -1,0 +1,9 @@
+.nav-bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+:host{
+    width: 100%;
+}
