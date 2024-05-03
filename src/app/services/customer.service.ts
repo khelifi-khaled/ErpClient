@@ -32,7 +32,7 @@ import { environment } from "src/envirenments/envirenment.developement";
   
   
     getAllCustemers(): Observable<Customer[]> {
-        return this._httpClient.get<Customer[]>(environment.baseUri + 'customers')
+        return this._httpClient.get<Customer[]>(environment.baseUri + 'customers', { reportProgress: true })
     }
 
 

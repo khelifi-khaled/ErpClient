@@ -1,4 +1,5 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { NbToastrService } from '@nebular/theme';
 import { Item } from 'src/app/models/item.models';
 import { ItemsService } from 'src/app/services/items.service';
 
@@ -10,7 +11,8 @@ import { ItemsService } from 'src/app/services/items.service';
 export class ItemsComponent implements OnInit  {
 
   constructor(
-    private readonly _itemService : ItemsService
+    private readonly _itemService : ItemsService,
+    private readonly _toaster: NbToastrService
   ){}
   
   
@@ -50,6 +52,21 @@ export class ItemsComponent implements OnInit  {
 
   consulterItem(item : Item) : void {
    this._itemService.getItem(item);
+  }
+
+  supprimerItem(item : Item) : void {
+    this._itemService.deleteItem(item).subscribe({
+      next: (response) => {
+        this.allItems = this.allItems.filter(i => i.id !== item.id);
+        this.filteredItems = this.allItems;
+        this._toaster.success(response.message);
+        console.log(response);
+        
+      },
+      error: (error) => {
+        console.error('Une erreur s\'est produite lors de la suppression de l\'item : ', error);
+      }
+    });
   }
 
 }

@@ -1,15 +1,32 @@
+.btns{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 
 .btn-consulter {
     background-color: #007bff;
     border: 1px solid #007bff; 
     border-radius: 4px; 
     padding: 8px 12px; 
-    cursor: pointer; 
+    cursor: pointer;
+  }
+  .btn-delete {
+    background-color: #8B0000;
+    border: 1px solid #8B0000; 
+    border-radius: 4px; 
+    padding: 8px 12px; 
+    cursor: pointer;
   }
   
   .btn-consulter:hover {
     background-color: #0056b3;
     border-color: #0056b3;
+  }
+  .btn-delete:hover {
+    background-color: #a23333;
+    border-color: #a23333;
   }
 
 input[type="text"] {

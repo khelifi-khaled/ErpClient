@@ -27,9 +27,12 @@ export class ItemsService {
     return JSON.parse(localStorage.getItem("ItemSelected") ?? '' ) ;
   }
 
+  deleteItem(item : Item) : Observable<any> {
+    return this._httpClient.delete(environment.baseUri + 'items/' + item.id , { reportProgress: true });
+  }
 
     getAllItems(): Observable<Item[]> {
-        return this._httpClient.get<Item[]>(environment.baseUri + 'items')
+        return this._httpClient.get<Item[]>(environment.baseUri + 'items', { reportProgress: true })
     }
 
     getItem(item : Item){

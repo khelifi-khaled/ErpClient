@@ -3,16 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbButtonModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbButtonModule, NbToastrModule, NbCardModule, NbDialogModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { ItemsComponent } from './pages/items/items.component';
 import { InvoicesComponent } from './pages/Invoices/invoices.component';
 import { CustomersComponent } from './pages/customers/customers.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ConsultItemComponent } from './pages/consultItem/consultItem.component';
 import { ConsultCustomerComponent } from './pages/consultCustomer/consultCustomer.component';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { LoaderComponent } from './components/loader/loader.component';
+import { LoaderInterceptor } from './interceptors/loader.interceptor';
+import { EditOrAddItemComponent } from './pages/edit-or-add-item/edit-or-add-item.component';
 
 
 @NgModule({
@@ -23,7 +27,9 @@ import { ConsultCustomerComponent } from './pages/consultCustomer/consultCustome
     InvoicesComponent,
     CustomersComponent,
     ConsultItemComponent,
-    ConsultCustomerComponent
+    ConsultCustomerComponent,
+    LoaderComponent,
+    EditOrAddItemComponent
     
   ],
   imports: [
@@ -35,9 +41,15 @@ import { ConsultCustomerComponent } from './pages/consultCustomer/consultCustome
     NbLayoutModule,
     NbEvaIconsModule,
     NbButtonModule,
-    FormsModule
+    NbCardModule,
+    FormsModule,
+    NbDialogModule.forRoot(),
+    NbToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

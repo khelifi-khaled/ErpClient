@@ -16,8 +16,9 @@
           <td>{{ item.itemPrice | currency:'€':'symbol':'1.2-2' }}</td>
           <td>{{ item.supplierItemNumber }}</td>
           <td>{{ item.itemNumber }}</td>
-          <td>
-            <button class="btn-consulter" (click)="consulterItem(item)">Consult</button>
+          <td  class="btns" >
+            <button class="btn-consulter" (click)="consulterItem(item)">Consulter</button>
+            <button class="btn-delete" (click)="supprimerItem(item)">Supprimer</button>
           </td>
         </tr>
       </tbody>
