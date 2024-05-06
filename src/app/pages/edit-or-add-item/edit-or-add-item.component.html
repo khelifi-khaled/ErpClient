@@ -1,0 +1,70 @@
+<form class="wrapper" [formGroup]="fg" (ngSubmit)="submit()">
+    <div class="container">
+        <h2>Item Details</h2>
+        <div class="form-group">
+            <label for="itemDiscription">Description:</label>
+            <input 
+            type="text"  
+            [(ngModel)]="ItemSelected.itemDiscription" 
+            class="form-control" 
+            formControlName="itemDiscription">
+            <app-error [control]="fg.get('itemDiscription')"></app-error>
+        </div>
+    
+        <div class="form-group">
+            <label for="itemPrice">Price:</label>
+            <input 
+            type="text" 
+            [(ngModel)]="ItemSelected.itemPrice" 
+            class="form-control" 
+            formControlName="itemPrice">
+            <app-error [control]="fg.get('itemPrice')"></app-error>
+        </div>
+    
+        <div class="form-group">
+            <label for="supplierItemNumber">Supplier Number:</label>
+            <input 
+            type="text" 
+            formControlName="supplierItemNumber"  
+            [(ngModel)]="ItemSelected.supplierItemNumber" 
+            class="form-control">
+            <app-error [control]="fg.get('supplierItemNumber')"></app-error>
+        </div>
+    
+        <div class="form-group">
+            <label for="itemNumber">Number:</label>
+            <input 
+            type="text" 
+            [(ngModel)]="ItemSelected.itemNumber" 
+            class="form-control" 
+            formControlName="itemNumber">
+            <app-error [control]="fg.get('itemNumber')"></app-error>
+        </div>
+    
+        <div class="form-group">
+            <label for="itemBarcode">Barcode:</label>
+            <input 
+            type="text" 
+            id="itemBarcode" 
+            [(ngModel)]="ItemSelected.itemBarcode" 
+            class="form-control" 
+            formControlName="itemBarcode">
+            <app-error [control]="fg.get('itemBarcode')"></app-error>
+        </div>
+    
+        <div class="form-group-vatType">
+            <label for="vatType">VAT type:</label>
+            <nb-select formControlName="vatType">
+                <nb-option *ngFor="let vt of VatTypes" [value]="vt.id">
+                    {{ vt.vatType }}
+                </nb-option>
+            </nb-select>
+            <app-error [control]="fg.get('vatType')"></app-error>
+        </div>
+        
+        <div class="btns">
+            <button type="submit" class ="btn-Cancel" nbButton status="primary"  >Submit</button>
+            <button type="button" class ="btn-Cancel" nbButton status="primary"  (click)="Cancel()" >Cancel</button>
+        </div>
+    </div>
+</form>

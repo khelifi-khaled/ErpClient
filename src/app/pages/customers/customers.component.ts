@@ -50,7 +50,18 @@ searchText: string = '';
   }
 
 
-  consulterCustomer(customer : Customer) : void {
+  consultCustomer(customer : Customer) : void {
    this._customerService.getCustomer(customer)
+  }
+  AddCustomer() : void {
+    console.log('Add Customer');
+  }
+
+  EditCustomer(customer : Customer) : void {
+    console.log('Edit Customer');
+  }
+
+  DeleteCustomer(customer : Customer) : void {
+    console.log('Delete Customer');
   }
 }

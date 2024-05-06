@@ -1,5 +1,8 @@
 <div class="container">
-    <input type="text" [(ngModel)]="searchText" (ngModelChange)="onSearchTextChange($event)" placeholder="Search customers" class="form-control mb-3">
+    <div class="header">
+      <input type="text" [(ngModel)]="searchText" (ngModelChange)="onSearchTextChange($event)" placeholder="Search Customers" class="form-control mb-3">
+      <button type="button" class ="btn-Cancel" nbButton status="primary"  (click)="AddCustomer()" >Add</button>
+    </div>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -14,8 +17,10 @@
           <td>{{customer.customerNumber}}</td>
           <td>{{customer.customerName}}</td>
           <td>{{customer.customerVatNumber}}</td>
-          <td>
-            <button class="btn-consulter" (click)="consulterCustomer(customer)">Consult</button>
+          <td class="btns" >
+            <button class="btn-consulter" (click)="consultCustomer(customer)">Consulter</button>
+            <button class="btn-edit" (click)="EditCustomer(customer)">Edit</button>
+            <button class="btn-delete" (click)="DeleteCustomer(customer)">Supprimer</button>
           </td>
         </tr>
       </tbody>

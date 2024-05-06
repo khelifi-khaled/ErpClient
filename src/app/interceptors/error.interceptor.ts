@@ -24,7 +24,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           this._toaster.danger('You are not allowed to do this operation');
           break;
         case 404: 
-          this._toaster.danger(xhr.errors.message);
+          this._toaster.danger(xhr.error.message);
           break;
         case 500:
           this._toaster.danger('You have error server, you need to contact technical support please');

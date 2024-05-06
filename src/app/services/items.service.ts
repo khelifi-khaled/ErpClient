@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from "rxjs";
 import { Item } from "../models/item.models";
 import { environment } from "src/envirenments/envirenment.developement";
+import { NbLayoutHeaderComponent } from "@nebular/theme";
 
 
 @Injectable({
@@ -23,7 +24,7 @@ export class ItemsService {
   }
 
 
-  get selectedItem() : Item|null {
+  get selectedItem() : Item {
     return JSON.parse(localStorage.getItem("ItemSelected") ?? '' ) ;
   }
 
@@ -35,7 +36,7 @@ export class ItemsService {
         return this._httpClient.get<Item[]>(environment.baseUri + 'items', { reportProgress: true })
     }
 
-    getItem(item : Item){
+    setItem(item : Item){
       this._selectedItem$.next(item);
       localStorage.setItem("ItemSelected", JSON.stringify(item));
       this._router.navigate(['consultItem']);
@@ -45,7 +46,19 @@ export class ItemsService {
       this._selectedItem$.next(null);
       localStorage.removeItem("ItemSelected");
     }
+
+    getAllVatTypes(): Observable<any> {
+      return this._httpClient.get(environment.baseUri + 'vat-types', { reportProgress: true });
+    }
   
+
+    updateItem(item : any) : Observable<any> {
+      return this._httpClient.put(environment.baseUri + 'items',item, { reportProgress: true });
+    }
+
+    addItem(item : any) : Observable<any> {
+      return this._httpClient.post(environment.baseUri + 'item/create',item, { reportProgress: true });
+    }
 
 }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { Item } from 'src/app/models/item.models';
 import { ItemsService } from 'src/app/services/items.service';
@@ -12,7 +13,8 @@ export class ItemsComponent implements OnInit  {
 
   constructor(
     private readonly _itemService : ItemsService,
-    private readonly _toaster: NbToastrService
+    private readonly _toaster: NbToastrService,
+    private readonly _router: Router
   ){}
   
   
@@ -51,7 +53,7 @@ export class ItemsComponent implements OnInit  {
 
 
   consulterItem(item : Item) : void {
-   this._itemService.getItem(item);
+   this._itemService.setItem(item);
   }
 
   supprimerItem(item : Item) : void {
@@ -69,4 +71,28 @@ export class ItemsComponent implements OnInit  {
     });
   }
 
+
+
+  EditItem(item : Item) : void {
+    this._itemService.setItem(item);
+    this._router.navigate(['/addOreditItem']);
+  }
+
+  AddItem() : void {
+    const DTO = {
+      id : '',
+      itemDescription : '',
+      itemNumber : '',
+      supplierItemNumber : '',
+      itemBarcode : '',
+      itemPrice :'',
+      vatType : {
+        id : '',
+        vatType : ''
+      }
+    }
+
+    this._itemService.setItem(DTO as unknown as  Item);
+    this._router.navigate(['/addOreditItem']);
+  }
 }

@@ -43,7 +43,7 @@
 
     <div class="form-group">
       <label for="registeredVat">registered Vat:</label>
-      <input type="text" id="registeredVat" name="registeredVat" [(ngModel)]="CustomerSelected.registeredVat" class="form-control" readonly>
+      <input type="checkbox" [checked]="CustomerSelected.registeredVat" id="registeredVat" name="registeredVat" [(ngModel)]="CustomerSelected.registeredVat" class="form-control" [disabled]="true" readonly>
     </div>
 
 

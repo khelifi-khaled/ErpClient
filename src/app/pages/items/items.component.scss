@@ -1,7 +1,23 @@
+
+.header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
 .btns{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.btn-edit{
+  background-color: #00FFFF;
+    border: 1px solid #00FFFF; 
+    border-radius: 4px; 
+    padding: 8px 12px; 
+    cursor: pointer;
 }
 
 
@@ -27,6 +43,10 @@
   .btn-delete:hover {
     background-color: #a23333;
     border-color: #a23333;
+  }
+  .btn-edit:hover {
+    background-color:#00FFFF;
+    border-color: #00FFFF;
   }
 
 input[type="text"] {

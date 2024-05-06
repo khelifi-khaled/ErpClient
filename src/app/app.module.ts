@@ -3,20 +3,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbButtonModule, NbToastrModule, NbCardModule, NbDialogModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbButtonModule, NbToastrModule, NbCardModule, NbDialogModule, NbSelectModule, NbIconModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { ItemsComponent } from './pages/items/items.component';
 import { InvoicesComponent } from './pages/Invoices/invoices.component';
 import { CustomersComponent } from './pages/customers/customers.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConsultItemComponent } from './pages/consultItem/consultItem.component';
 import { ConsultCustomerComponent } from './pages/consultCustomer/consultCustomer.component';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { LoaderComponent } from './components/loader/loader.component';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
 import { EditOrAddItemComponent } from './pages/edit-or-add-item/edit-or-add-item.component';
+import { ErrorComponent } from './components/error/error.component';
 
 
 @NgModule({
@@ -29,8 +30,8 @@ import { EditOrAddItemComponent } from './pages/edit-or-add-item/edit-or-add-ite
     ConsultItemComponent,
     ConsultCustomerComponent,
     LoaderComponent,
-    EditOrAddItemComponent
-    
+    EditOrAddItemComponent,
+    ErrorComponent
   ],
   imports: [
     HttpClientModule,
@@ -44,7 +45,11 @@ import { EditOrAddItemComponent } from './pages/edit-or-add-item/edit-or-add-ite
     NbCardModule,
     FormsModule,
     NbDialogModule.forRoot(),
-    NbToastrModule.forRoot()
+    NbToastrModule.forRoot(),
+    NbSelectModule,
+    ReactiveFormsModule,
+    NbEvaIconsModule,
+    NbIconModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
