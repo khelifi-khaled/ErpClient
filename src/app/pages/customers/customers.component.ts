@@ -80,6 +80,7 @@ searchText: string = '';
       
     }
     this._customerService.setCustomer(customer as unknown as Customer);
+    
     this._router.navigate(['addOreditCustomer']);
   }
 
