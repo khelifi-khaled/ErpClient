@@ -18,6 +18,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
 import { EditOrAddItemComponent } from './pages/edit-or-add-item/edit-or-add-item.component';
 import { ErrorComponent } from './components/error/error.component';
+import { EditOrAddCustomerComponent } from './pages/edit-or-add-customer/edit-or-add-customer.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { ErrorComponent } from './components/error/error.component';
     ConsultCustomerComponent,
     LoaderComponent,
     EditOrAddItemComponent,
-    ErrorComponent
+    ErrorComponent,
+    EditOrAddCustomerComponent
   ],
   imports: [
     HttpClientModule,

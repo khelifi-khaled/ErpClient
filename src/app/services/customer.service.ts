@@ -26,7 +26,7 @@ import { environment } from "src/envirenments/envirenment.developement";
     }
   
   
-    get selectedCustomer() : Customer|null {
+    get selectedCustomer() : Customer {
       return JSON.parse(localStorage.getItem("CustomerSelected") ?? '' ) ;
     }
   
@@ -36,15 +36,34 @@ import { environment } from "src/envirenments/envirenment.developement";
     }
 
 
-    getCustomer(customer : Customer){
+    setCustomer(customer : Customer){
         this._selectedCustomer$.next(customer);
         localStorage.setItem("CustomerSelected", JSON.stringify(customer));
-        this._router.navigate(['consultCustomer']);
       }
     
       remove(){
         this._selectedCustomer$.next(null);
         localStorage.removeItem("CustomerSelected");
+      }
+
+      deleteCustomer(id : string ) : Observable<any>{
+        return this._httpClient.delete(environment.baseUri + 'customers/' + id, { reportProgress: true });
+      }
+
+      addCustomer(customer : any) : Observable<Customer>{
+        return this._httpClient.post<Customer>(environment.baseUri + 'customers', customer, { reportProgress: true });
+      }
+
+      updateCustomer(customer : any) : Observable<any>{
+        return this._httpClient.put<Customer>(environment.baseUri + 'customers', customer, { reportProgress: true });
+      }
+
+      getAllPayementTerms(): Observable<any>{
+        return this._httpClient.get(environment.baseUri + 'customer/payment-terms', { reportProgress: true });
+      }
+
+      getAllCategories(): Observable<any>{
+        return this._httpClient.get(environment.baseUri + 'customer/categories', { reportProgress: true });
       }
 
 

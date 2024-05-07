@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
@@ -11,7 +11,7 @@ import { ItemsService } from 'src/app/services/items.service';
   templateUrl: './edit-or-add-item.component.html',
   styleUrls: ['./edit-or-add-item.component.scss']
 })
-export class EditOrAddItemComponent implements OnInit{
+export class EditOrAddItemComponent implements OnInit , OnDestroy{
 
   fg!: FormGroup;
   ItemSelected! : Item;
@@ -20,7 +20,6 @@ export class EditOrAddItemComponent implements OnInit{
 
   constructor(
     private readonly _router: Router,
-    private readonly _fBuilder : FormBuilder,
     private readonly _toastr: NbToastrService, 
     private readonly _itemService: ItemsService
   ) { }
@@ -101,6 +100,10 @@ export class EditOrAddItemComponent implements OnInit{
 
   Cancel () {
     this._router.navigate(['items']);
+    this._itemService.remove();
+  }
+
+   ngOnDestroy(): void {
     this._itemService.remove();
   }
 

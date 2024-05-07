@@ -6,6 +6,7 @@ import { CustomersComponent } from './pages/customers/customers.component';
 import { ConsultItemComponent } from './pages/consultItem/consultItem.component';
 import { ConsultCustomerComponent } from './pages/consultCustomer/consultCustomer.component';
 import { EditOrAddItemComponent } from './pages/edit-or-add-item/edit-or-add-item.component';
+import { EditOrAddCustomerComponent } from './pages/edit-or-add-customer/edit-or-add-customer.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'consultItem', component: ConsultItemComponent},
   {path: 'consultCustomer', component: ConsultCustomerComponent},
   {path: 'addOreditItem', component: EditOrAddItemComponent},
+  {path: 'addOreditCustomer', component: EditOrAddCustomerComponent},
 
 ];
 

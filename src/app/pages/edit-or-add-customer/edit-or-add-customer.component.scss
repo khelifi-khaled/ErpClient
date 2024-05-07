@@ -1,6 +1,7 @@
 
+
 .container {
-    max-width: 600px;
+    max-width: 600px; 
     margin: auto;
     padding: 20px;
     background-color: #f8f9fa; 
@@ -45,13 +46,18 @@
     justify-content: space-between;
   }
 
-
-  .form-group-vatType{
+  
+  .form-group-select{
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     align-items: center;
 
   }
-  
-  
+
+  .selects{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }

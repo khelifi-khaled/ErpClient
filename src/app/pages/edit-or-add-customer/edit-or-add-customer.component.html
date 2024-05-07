@@ -1,0 +1,96 @@
+<div class="container">
+    <h2>Customer Details</h2>
+    <form [formGroup]="fg" (ngSubmit)="submit()">
+      <div class="form-group">
+        <label for="customerName">Customer Name:</label>
+        <input type="text" 
+        [(ngModel)]="customerSelected!.customerName" 
+        formControlName="customerName"
+        class="form-control">
+        <app-error [control]="fg.get('customerName')"></app-error>
+      </div>
+  
+      <div class="form-group" >
+        <label for="customerNumber" *ngIf="customerSelected!.id" >Customer Number:</label>
+        <input *ngIf="customerSelected!.id" 
+        type="text" 
+        formControlName="customerNumber" 
+        [(ngModel)]="customerSelected!.customerNumber" 
+        class="form-control"
+        readonly>
+      </div>
+  
+      <div class="form-group">
+        <label for="customerPhoneNumber">Phone Number:</label>
+        <input type="text" 
+        formControlName="customerPhoneNumber"
+        [(ngModel)]="customerSelected!.customerPhoneNumber" 
+        class="form-control">
+        <app-error [control]="fg.get('customerPhoneNumber')"></app-error>
+      </div>
+  
+      <div class="form-group">
+        <label for="customerFaxNumber">Fax Number:</label>
+        <input type="text" 
+        formControlName="customerFaxNumber"
+        [(ngModel)]="customerSelected!.customerFaxNumber" 
+        class="form-control">
+        <app-error [control]="fg.get('customerFaxNumber')"></app-error>
+      </div>
+  
+      <div class="form-group">
+        <label for="customerEmail">Email:</label>
+        <input type="text" 
+        formControlName="customerEmail"
+        [(ngModel)]="customerSelected!.customerEmail" 
+        class="form-control">
+        <app-error [control]="fg.get('customerEmail')"></app-error>
+      </div>
+  
+      <div class="form-group">
+        <label for="customerVatNumber">Vat Number:</label>
+        <input type="text" 
+        formControlName="customerVatNumber"
+        [(ngModel)]="customerSelected!.customerVatNumber" 
+        class="form-control">
+        <app-error [control]="fg.get('customerVatNumber')"></app-error>
+      </div>
+  
+      <div class="form-group">
+        <label for="registeredVat">registered Vat:</label>
+        <input type="checkbox" 
+        [checked]="customerSelected!.registeredVat" 
+        formControlName="registeredVat" 
+        [(ngModel)]="customerSelected!.registeredVat" 
+        class="form-control">
+        <app-error [control]="fg.get('registeredVat')"></app-error>
+      </div>
+     <div class="selects">
+        <div class="form-group-select">
+            <label for="customerCategory">Category:</label>
+            <nb-select formControlName="customerCategory">
+                <nb-option *ngFor="let c of customerCategories" [value]="c.id">
+                    {{ c.category }}
+                </nb-option>
+            </nb-select>
+            <app-error [control]="fg.get('customerPayementTerm')"></app-error>
+        </div>
+    
+          <div class="form-group-select">
+            <label for="customerPayementTerm">Payement Term:</label>
+            <nb-select formControlName="customerPayementTerm">
+                <nb-option *ngFor="let pt of customerPayementTerms" [value]="pt.id">
+                    {{ pt.payementTerm }}
+                </nb-option>
+            </nb-select>
+            <app-error [control]="fg.get('customerPayementTerm')"></app-error>
+        </div>
+     </div>
+      <div class="btns">
+        <button type="submit" class ="btn-Cancel" nbButton status="primary"  >Submit</button>
+        <button type="button" class ="btn-Cancel" nbButton status="primary"  (click)="cancel()" >Cancel</button>
+    </div>
+  
+    </form>
+  </div>
+  

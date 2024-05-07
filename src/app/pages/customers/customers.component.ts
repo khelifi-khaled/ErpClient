@@ -1,4 +1,6 @@
 import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
+import { NbToastrService } from '@nebular/theme';
 import { Customer } from 'src/app/models/customer.models';
 import { CustomersService } from 'src/app/services/customer.service';
 
@@ -9,7 +11,9 @@ import { CustomersService } from 'src/app/services/customer.service';
 })
 export class CustomersComponent implements OnInit {
 constructor(
-    private readonly _customerService : CustomersService
+    private readonly _customerService : CustomersService,
+    private readonly _toaster : NbToastrService,
+    private readonly _router: Router
   ){
 
 }
@@ -51,17 +55,50 @@ searchText: string = '';
 
 
   consultCustomer(customer : Customer) : void {
-   this._customerService.getCustomer(customer)
+   this._customerService.setCustomer(customer)
+   this._router.navigate(['consultCustomer']);
   }
   AddCustomer() : void {
-    console.log('Add Customer');
+    const customer = {
+      id : '',
+      customerCategory : {
+        id : '',
+        categor : ''
+      },
+      customerPayementTerm : {
+        id : '',
+        payementTerm : '',
+        payementTermCode : ''
+      },
+      customerNumber : 0,
+      customerName : '',
+      customerPhoneNumber : '',
+      customerFaxNumber : '',
+      customerEmail : '',
+      customerVatNumber : '',
+      registeredVat : false
+      
+    }
+    this._customerService.setCustomer(customer as unknown as Customer);
+    this._router.navigate(['addOreditCustomer']);
   }
 
   EditCustomer(customer : Customer) : void {
-    console.log('Edit Customer');
+    this._customerService.setCustomer(customer);
+
+    this._router.navigate(['addOreditCustomer']);
   }
 
   DeleteCustomer(customer : Customer) : void {
-    console.log('Delete Customer');
+    this._customerService.deleteCustomer(customer.id).subscribe({
+      next: (resp) => {
+        this.allCustomers = this.allCustomers.filter(c => c.id !== customer.id);
+        this.filteredCustomers = this.allCustomers;
+        this._toaster.success(resp.message, 'Suppression réussie');
+      },
+      error: (error) => {
+        this._toaster.danger(error.message, 'Erreur de suppression');
+      }
+    });
   }
 }
