@@ -25,7 +25,7 @@ export class EditOrAddCustomerComponent implements OnInit, OnDestroy {
 
  
   
-   customerSelected ! : Customer | null;
+   customerSelected ! : Customer;
    fg!: FormGroup;
    customerPayementTerms : PayementTerm[] = []; 
    customerCategories : Category[] = [];
@@ -67,14 +67,14 @@ export class EditOrAddCustomerComponent implements OnInit, OnDestroy {
       customerEmail: 
       new FormControl(
         this.customerSelected.customerEmail,
-        [Validators.required,Validators.minLength(3),Validators.maxLength(50),Validators.email]),
+        [Validators.required,Validators.minLength(10),Validators.maxLength(50),Validators.email]),
       customerVatNumber:
        new FormControl(
         this.customerSelected.customerVatNumber,
         [Validators.required,Validators.minLength(3),Validators.maxLength(50)]),
       registeredVat : 
       new FormControl(
-        this.customerSelected.registeredVat),
+        this.customerSelected.registeredVat,[]),
       customerCategory : 
       new FormControl(
         this.customerSelected.customerCategory.id,
@@ -104,7 +104,7 @@ export class EditOrAddCustomerComponent implements OnInit, OnDestroy {
 
 
     const DTO = {
-      id : this.customerSelected?.id ?? '',
+      id : this.customerSelected.id ?? '',
       customerName : this.fg.get('customerName')?.value,
       phoneNumber : this.fg.get('customerPhoneNumber')?.value,
       faxNumber : this.fg.get('customerFaxNumber')?.value,
@@ -114,12 +114,15 @@ export class EditOrAddCustomerComponent implements OnInit, OnDestroy {
       cathegoryId : this.fg.get('customerCategory')?.value,
       paymentTermId : this.fg.get('customerPayementTerm')?.value,
     }
+
     
 
-    if(!this.customerSelected!.id){
+    if(! this.customerSelected.id){
+      console.log(DTO);
+      
       this._customerService.addCustomer(DTO).subscribe({
-        next: () => {
-          this._toastr.success('Le client a été ajouté avec succès', 'Opération réussie');
+        next: (data) => {
+          this._toastr.success('Le client ' + data.name +" a bien été ajouté dans la Db", 'Opération réussie');
           this._router.navigate(['customers']);
         },
         error: (error) => {
@@ -128,9 +131,11 @@ export class EditOrAddCustomerComponent implements OnInit, OnDestroy {
       });
       return;
     }
-
+    console.log(DTO);
     this._customerService.updateCustomer(DTO).subscribe({
       next: (data) => {
+        console.log(data);
+        
         this._toastr.success(data.message, 'Opération réussie');
         this._router.navigate(['customers']);
       },

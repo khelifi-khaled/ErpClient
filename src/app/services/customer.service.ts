@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { BehaviorSubject, Observable } from "rxjs";
 import { Customer } from "../models/customer.models";
 import { environment } from "src/envirenments/envirenment.developement";
+import { NbLayoutHeaderComponent } from "@nebular/theme";
 
 
 @Injectable({
@@ -50,8 +51,8 @@ import { environment } from "src/envirenments/envirenment.developement";
         return this._httpClient.delete(environment.baseUri + 'customers/' + id, { reportProgress: true });
       }
 
-      addCustomer(customer : any) : Observable<Customer>{
-        return this._httpClient.post<Customer>(environment.baseUri + 'customers', customer, { reportProgress: true });
+      addCustomer(customer : any) : Observable<any>{
+        return this._httpClient.post<any>(environment.baseUri + 'customer/create', customer, { reportProgress: true });
       }
 
       updateCustomer(customer : any) : Observable<any>{
