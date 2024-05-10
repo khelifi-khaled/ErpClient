@@ -131,7 +131,7 @@ export class EditOrAddCustomerComponent implements OnInit, OnDestroy {
       });
       return;
     }
-    console.log(DTO);
+    
     this._customerService.updateCustomer(DTO).subscribe({
       next: (data) => {
         console.log(data);

@@ -19,7 +19,7 @@ import { LoaderInterceptor } from './interceptors/loader.interceptor';
 import { EditOrAddItemComponent } from './pages/edit-or-add-item/edit-or-add-item.component';
 import { ErrorComponent } from './components/error/error.component';
 import { EditOrAddCustomerComponent } from './pages/edit-or-add-customer/edit-or-add-customer.component';
-
+import { ConsultInvoiceComponent } from './consult-invoice/consult-invoice.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,8 @@ import { EditOrAddCustomerComponent } from './pages/edit-or-add-customer/edit-or
     LoaderComponent,
     EditOrAddItemComponent,
     ErrorComponent,
-    EditOrAddCustomerComponent
+    EditOrAddCustomerComponent,
+    ConsultInvoiceComponent
   ],
   imports: [
     HttpClientModule,

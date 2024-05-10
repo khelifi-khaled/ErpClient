@@ -1,4 +1,5 @@
 import { PayementTerm } from "./PayementTerm.models";
+import { Address } from "./address.models";
 import { Category } from "./category.models";
 
 export interface Customer {
@@ -12,4 +13,5 @@ export interface Customer {
     customerEmail : string,
     customerVatNumber : string,
     registeredVat : boolean
+    Addresses : Address[]
 }

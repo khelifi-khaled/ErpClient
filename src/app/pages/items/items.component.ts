@@ -88,7 +88,11 @@ export class ItemsComponent implements OnInit  {
       itemPrice :'',
       vatType : {
         id : '',
-        vatType : ''
+        vatType : '',
+        vatValue : {
+          id : '',
+          vatValue : ''
+        }
       }
     }
 

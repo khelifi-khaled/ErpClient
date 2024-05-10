@@ -58,10 +58,11 @@
   
       <div class="form-group">
         <label for="registeredVat">registered Vat:</label>
-        <input type="checkbox" 
-        [checked]="customerSelected!.registeredVat" 
+        <input 
+        type="checkbox" 
+        [checked]="customerSelected.registeredVat" 
         formControlName="registeredVat" 
-        [(ngModel)]="customerSelected!.registeredVat" 
+        [(ngModel)]="customerSelected.registeredVat" 
         class="form-control">
         <app-error [control]="fg.get('registeredVat')"></app-error>
       </div>

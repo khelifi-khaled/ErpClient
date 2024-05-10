@@ -1,1 +1,33 @@
-<p>hi this is invoices page</p>
+<div class="container">
+    <div class="header">
+      <input type="text" [(ngModel)]="searchText" (ngModelChange)="onSearchTextChange($event)" placeholder="Search Invoice" class="form-control mb-3">
+      <button type="button" class ="btn-Cancel" nbButton status="primary"  (click)="addInvoice()" >Add</button>
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Number</th>
+          <th>Date </th>
+          <th>Due Date</th>
+          <th>Customer Name</th>
+          <th>Customer Number</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let invoice of filteredInvoices">
+          <td>{{invoice.invoiceNumber}}</td>
+          <td>{{invoice.invoiceDate | date:'dd-MM-yyyy'}}</td>
+          <td>{{invoice.invoiceDueDate | date:'dd-MM-yyyy'}}</td>
+          <td>{{invoice.customer.customerName}}</td>
+          <td>{{invoice.customer.customerNumber}}</td>
+          <td class="btns" >
+            <button class="btn-consulter" (click)="consultInvoice(invoice)" >Consulter</button>
+            <button class="btn-edit" (click)="editInvoice(invoice)" [disabled]="invoice.flagAccounting">Edit</button>
+            <button class="btn-delete" (click)="deleteInvoice(invoice)">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
