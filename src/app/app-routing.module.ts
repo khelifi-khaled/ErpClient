@@ -8,6 +8,7 @@ import { ConsultCustomerComponent } from './pages/consultCustomer/consultCustome
 import { EditOrAddItemComponent } from './pages/edit-or-add-item/edit-or-add-item.component';
 import { EditOrAddCustomerComponent } from './pages/edit-or-add-customer/edit-or-add-customer.component';
 import { ConsultInvoiceComponent } from './pages/consult-invoice/consult-invoice.component';
+import { AddOrEditInvoiceComponent } from './pages/add-or-edit-invoice/add-or-edit-invoice.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path: 'consultCustomer', component: ConsultCustomerComponent},
   {path: 'addOreditItem', component: EditOrAddItemComponent},
   {path: 'addOreditCustomer', component: EditOrAddCustomerComponent},
-  {path: 'consultInvoice', component: ConsultInvoiceComponent}
+  {path: 'consultInvoice', component: ConsultInvoiceComponent},
+  {path: 'addOrEditInvoice', component: AddOrEditInvoiceComponent},
 
 ];
 

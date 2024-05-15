@@ -1,6 +1,5 @@
 import { Customer } from "./customer.models";
 import { InvoiceItem } from "./invoiceItem.models";
-import { Item } from "./item.models";
 
 export interface Invoice{
     id : string,

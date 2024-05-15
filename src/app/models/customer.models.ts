@@ -13,5 +13,5 @@ export interface Customer {
     customerEmail : string,
     customerVatNumber : string,
     registeredVat : boolean
-    Addresses : Address[]
+    address : Address
 }
