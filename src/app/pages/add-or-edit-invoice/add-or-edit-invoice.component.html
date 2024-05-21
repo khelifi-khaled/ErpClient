@@ -4,7 +4,7 @@
 <header>
     <h1>Invoice</h1>
     <table class="meta">
-        <td><span contenteditable #spanContent (keydown)="onKeyDown(spanContent)" >Search Customer</span></td>
+        <td><span contenteditable #spanContent (keydown)="onKeyDownCustomer(spanContent)" >Search Customer</span></td>
         <tr *ngFor="let c of filteredCustomers">
             <td><span id="prefix" [contentEditable]="false"></span><span (click)="setCustomerToInvoice(c)" >{{c.customerName}}</span></td>
         </tr>
@@ -87,9 +87,9 @@
     </table>
 
     <table class="meta">
-        <td><span contenteditable #spanContent (keydown)="onKeyDown(spanContent)" >Search Customer</span></td>
-        <tr *ngFor="let c of filteredCustomers">
-            <td><span data-prefix id="prefix" [contentEditable]="false"></span><span (click)="setCustomerToInvoice(c)" >{{c.customerName}}</span></td>
+        <td><span contenteditable #spanContentForItem (keydown)="onKeyDownItem(spanContentForItem)" >Search Item</span></td>
+        <tr *ngFor="let i of filteredItems">
+            <td><span data-prefix id="prefix" [contentEditable]="false"></span><span (click)="addItemToInvoice(i)" >{{i.itemDiscription}}</span></td>
         </tr>
     </table>
 </article>
