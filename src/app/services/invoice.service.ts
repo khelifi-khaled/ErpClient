@@ -21,11 +21,14 @@ export class InvoiceService {
     return this._selectedInvoice$.asObservable();
   }
 
+  get selectedInvoice() : Invoice {
+    return localStorage.getItem("SelectedInvoice") ? JSON.parse(localStorage.getItem("SelectedInvoice")!) : null;
+  }
 
   setInvoice(invoice : Invoice){
     this._selectedInvoice$.next(invoice);
     localStorage.setItem("SelectedInvoice", JSON.stringify(invoice));
-    this._router.navigate(['consultInvoice']);
+    //this._router.navigate(['consultInvoice']);
   }
 
   removeInvoice(){

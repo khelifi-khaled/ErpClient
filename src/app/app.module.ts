@@ -34,6 +34,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     EditOrAddCustomerComponent,
     InvoicesComponent,
     ConsultInvoiceComponent,
-    AddOrEditInvoiceComponent
+    AddOrEditInvoiceComponent,
+    FilterPipe
   ],
   imports: [
     HttpClientModule,

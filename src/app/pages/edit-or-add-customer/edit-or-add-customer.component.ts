@@ -25,7 +25,7 @@ export class EditOrAddCustomerComponent implements OnInit, OnDestroy {
 
  
   
-   customerSelected ! : Customer;
+   customerSelected! : Customer;
    fg!: FormGroup;
    customerPayementTerms : PayementTerm[] = []; 
    customerCategories : Category[] = [];

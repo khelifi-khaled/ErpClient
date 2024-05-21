@@ -1,1 +1,103 @@
-<p>add-or-edit-invoice works!</p>
+
+<form [formGroup]="fg" (ngSubmit)="submit()">
+
+<header>
+    <h1>Invoice</h1>
+    <table class="meta">
+        <td><span contenteditable #spanContent (keydown)="onKeyDown(spanContent)" >Search Customer</span></td>
+        <tr *ngFor="let c of filteredCustomers">
+            <td><span id="prefix" [contentEditable]="false"></span><span (click)="setCustomerToInvoice(c)" >{{c.customerName}}</span></td>
+        </tr>
+    </table>
+    <address [contentEditable]="false">        
+        <p>{{selectedInvoice.customer.customerName}}</p>
+        <p>{{selectedInvoice.customer.address.street}} 
+            {{selectedInvoice.customer.address.number}}, 
+            {{selectedInvoice.customer.address.box}}
+            <br>{{selectedInvoice.customer.address.zipCode}}, {{selectedInvoice.customer.address.cityName}}</p>
+        <p>{{selectedInvoice.customer.customerPhoneNumber}}</p>
+        <p>Type: {{selectedInvoice.customer.customerCategory.category}}</p>
+    </address>
+</header>
+<article>
+    <address contenteditable>
+        <p>Company Of Test</p>
+    </address>
+    <table class="meta">
+        <tr>
+            <th><span [contentEditable]="false">Invoice Number</span></th>
+            <td><span contenteditable>{{selectedInvoice.invoiceNumber}}</span></td>
+        </tr>
+        <tr>
+            <th><span [contentEditable]="false">Date</span></th>
+            <td><span contenteditable>{{selectedInvoice.invoiceDate | date : 'dd-MM-yyyy'}}</span></td>
+        </tr>
+        <tr>
+            <th><span [contentEditable]="false">Amount Due</span></th>
+            <td><span id="prefix" contenteditable>€</span><span>{{selectedInvoice.totalVatAmount | number : '3.2'}}</span></td>
+        </tr>
+    </table>
+    <table class="inventory">
+        <thead>
+            <tr>
+                <th><span [contentEditable]="false">Item Number</span></th>
+                <th><span [contentEditable]="false">Description</span></th>
+                <th><span [contentEditable]="false">Quantity</span></th>
+                <th><span [contentEditable]="false">Unit Price</span></th>
+                <th><span [contentEditable]="false">Amount (HT)</span></th>
+                <th><span [contentEditable]="false">Vat Type</span></th>
+                <th><span [contentEditable]="false">Vat Value</span></th>
+                <th><span [contentEditable]="false">Amount (TC)</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let invoiceItem of selectedInvoice.invoiceItems">
+                <td><button type="button" class="cut" (click)="removeInvoiceItem(invoiceItem.id)">-</button><span [contentEditable]="false">{{invoiceItem.item.itemNumber}}</span></td>
+                <td><span [contentEditable]="false">{{invoiceItem.item.itemDiscription}}</span></td>
+                <td>
+                    <div class="btns">
+                        <button type="button" class="add" (click)="removeQuantity(invoiceItem)">-</button>
+                        <button type="button" class="add" (click)="addQuantity(invoiceItem)">+</button>
+                        <span [contentEditable]="false">{{invoiceItem.quantity}}</span>
+                    </div>
+                    
+                </td>
+                <td><span data-prefix>€ </span><span>{{invoiceItem.item.itemPrice | number : '3.2'}}</span></td>
+                <td><span data-prefix>€ </span><span [contentEditable]="false">{{invoiceItem.price | number : '3.2'}}</span></td>
+                <td><span [contentEditable]="false">{{invoiceItem.item.vatType.vatType}}</span></td>
+                <td><span [contentEditable]="false">{{invoiceItem.item.vatType.vatValue.vatValue}} %</span></td>
+                <td><span data-prefix>€ </span><span>{{invoiceItem.purchcasePrice | number : '3.2'}}</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="balance" >
+        <tr>
+            <th><span [contentEditable]="false">SubTotal (HT)</span></th>
+            <td><span data-prefix>€ </span><span>{{selectedInvoice.totalAmountExcVat | number : '3.2' }}</span></td>
+        </tr>
+        <tr>
+            <th><span [contentEditable]="false">Tax</span></th>
+            <td><span data-prefix>€ </span><span [contentEditable]="false">{{tax | number : '3.2'}} </span></td>
+        </tr>
+        <tr>
+            <th><span [contentEditable]="false">Total Amount (TTC)</span></th>
+            <td><span data-prefix>€ </span><span>{{selectedInvoice.totalVatAmount | number : '3.2'}}</span></td>
+        </tr>
+    </table>
+
+    <table class="meta">
+        <td><span contenteditable #spanContent (keydown)="onKeyDown(spanContent)" >Search Customer</span></td>
+        <tr *ngFor="let c of filteredCustomers">
+            <td><span data-prefix id="prefix" [contentEditable]="false"></span><span (click)="setCustomerToInvoice(c)" >{{c.customerName}}</span></td>
+        </tr>
+    </table>
+</article>
+<aside>
+    <h1><span [contentEditable]="false">Additional Notes</span></h1>
+    <div [contentEditable]="false">
+        <p>A finance charge of 1.5% will be made on unpaid balances after 30 days.</p>
+    </div>
+</aside>
+
+</form>
