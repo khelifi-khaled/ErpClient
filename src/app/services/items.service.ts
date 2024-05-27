@@ -31,8 +31,8 @@ export class ItemsService {
     return this._httpClient.delete(environment.baseUri + 'items/' + item.id , { reportProgress: true });
   }
 
-    getAllItems(): Observable<Item[]> {
-        return this._httpClient.get<Item[]>(environment.baseUri + 'items', { reportProgress: true })
+    getAllItems(): Observable<any> {
+        return this._httpClient.get<any>(environment.baseUri + 'items', { reportProgress: true })
     }
 
     setItem(item : Item){

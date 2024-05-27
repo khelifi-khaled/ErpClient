@@ -28,7 +28,6 @@ export class InvoiceService {
   setInvoice(invoice : Invoice){
     this._selectedInvoice$.next(invoice);
     localStorage.setItem("SelectedInvoice", JSON.stringify(invoice));
-    //this._router.navigate(['consultInvoice']);
   }
 
   removeInvoice(){
@@ -37,6 +36,14 @@ export class InvoiceService {
   }
 
 
+
+  postInvoice(invoice : any) : Observable<any> {
+    return this._httpClient.post<any>(environment.baseUri + 'Invoice/Create', invoice, { reportProgress: true });
+  }
+
+  updateInvoice(invoice : any) : Observable<any> {
+    return this._httpClient.put(environment.baseUri + 'Invoices', invoice, { reportProgress: true });
+  }
 
   getAllInvoices() : Observable<any> {
     return this._httpClient.get(environment.baseUri + 'Invoices', { reportProgress: true });

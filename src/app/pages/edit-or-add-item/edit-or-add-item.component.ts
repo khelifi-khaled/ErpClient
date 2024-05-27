@@ -29,10 +29,9 @@ export class EditOrAddItemComponent implements OnInit , OnDestroy{
     this.ItemSelected = this._itemService.selectedItem;
     this._itemService.getAllVatTypes().subscribe({
       next: (data) => {
-        this.VatTypes = data;
-      },
-      error: (error) => {
-        console.error('Une erreur s\'est produite lors de la récupération des types de TVA : ', error);
+        this.VatTypes = data.value;
+        console.log(data);
+        
       }
     });
 
@@ -72,10 +71,6 @@ export class EditOrAddItemComponent implements OnInit , OnDestroy{
         next: () => {
           this._toastr.show("l'article a bien été cree dans la DB", 'Succès');
           this._router.navigate(['items']);
-        },
-        error: (error) => {
-          this._toastr.danger('Une erreur s\'est produite lors de l\'ajout de l\'item', 'Erreur');
-          console.log(error);
         }
       });
       return;
@@ -85,14 +80,9 @@ export class EditOrAddItemComponent implements OnInit , OnDestroy{
     // this is an update operation
     
     this._itemService.updateItem(DTO).subscribe({
-      next: (resp) => {
-        this._toastr.show(resp.message, 'Succès')
-        console.log(resp.message);
+      next: () => {
+        this._toastr.show('l\'article a bien été update dans la DB', 'Succès')
         this._router.navigate(['items']);
-      },
-      error: (error) => {
-        this._toastr.danger('Une erreur s\'est produite lors de la mise à jour de l\'item', 'Erreur');
-        console.log(error);
       }
     });
     

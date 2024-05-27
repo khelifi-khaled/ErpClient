@@ -25,8 +25,8 @@
     </address>
     <table class="meta">
         <tr>
-            <th><span [contentEditable]="false">Invoice Number</span></th>
-            <td><span contenteditable>{{selectedInvoice.invoiceNumber}}</span></td>
+            <th *ngIf="selectedInvoice.id"><span [contentEditable]="false">Invoice Number</span></th>
+            <td *ngIf="selectedInvoice.id"><span contenteditable>{{selectedInvoice.invoiceNumber}}</span></td>
         </tr>
         <tr>
             <th><span [contentEditable]="false">Date</span></th>
@@ -84,6 +84,9 @@
             <th><span [contentEditable]="false">Total Amount (TTC)</span></th>
             <td><span data-prefix>€ </span><span>{{selectedInvoice.totalVatAmount | number : '3.2'}}</span></td>
         </tr>
+        <tr>
+            <td><button type="button" class="submitbtn" (click)="submit()">submit</button></td>
+        </tr>
     </table>
 
     <table class="meta">
@@ -92,8 +95,11 @@
             <td><span data-prefix id="prefix" [contentEditable]="false"></span><span (click)="addItemToInvoice(i)" >{{i.itemDiscription}}</span></td>
         </tr>
     </table>
+   
 </article>
+
 <aside>
+    
     <h1><span [contentEditable]="false">Additional Notes</span></h1>
     <div [contentEditable]="false">
         <p>A finance charge of 1.5% will be made on unpaid balances after 30 days.</p>

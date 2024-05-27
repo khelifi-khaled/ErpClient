@@ -26,12 +26,9 @@ export class ItemsComponent implements OnInit  {
 
   ngOnInit(): void {
     this._itemService.getAllItems().subscribe({
-      next: (items: Item[]) => {
-        this.allItems = items;
+      next: (response) => {
+        this.allItems = response.value;
         this.filteredItems = this.allItems;
-      },
-      error: (error) => {
-        console.error('Une erreur s\'est produite lors de la récupération des items : ', error);
       }
     });
     
@@ -58,15 +55,10 @@ export class ItemsComponent implements OnInit  {
 
   supprimerItem(item : Item) : void {
     this._itemService.deleteItem(item).subscribe({
-      next: (response) => {
+      next: () => {
         this.allItems = this.allItems.filter(i => i.id !== item.id);
         this.filteredItems = this.allItems;
-        this._toaster.success(response.message);
-        console.log(response);
-        
-      },
-      error: (error) => {
-        console.error('Une erreur s\'est produite lors de la suppression de l\'item : ', error);
+        this._toaster.success('L\'item a été supprimé avec succès', 'Suppression');
       }
     });
   }

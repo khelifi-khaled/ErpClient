@@ -9,6 +9,7 @@ import { Item } from 'src/app/models/item.models';
 import { CustomersService } from 'src/app/services/customer.service';
 import { InvoiceService } from 'src/app/services/invoice.service';
 import { ItemsService } from 'src/app/services/items.service';
+import { Guid } from 'typescript-guid';
 
 @Component({
   selector: 'app-add-or-edit-invoice',
@@ -67,7 +68,70 @@ constructor(
 
 
   submit() : void {
-    console.log('submit');
+
+    if(this.selectedInvoice.invoiceItems.length === 0){
+      this._toaster.warning('You have to add item to invoice');
+      return;
+    }
+    if(!this.selectedInvoice.customer.id){
+      this._toaster.warning('You have to select customer');
+      return;
+    }
+
+    const invoiceDto = {
+      id : this.selectedInvoice.id,
+      customerId : this.selectedInvoice.customer.id,
+      totalAmountExcVat : this.selectedInvoice.totalAmountExcVat,
+      totalAmountVat : this.selectedInvoice.totalVatAmount,
+      invoiceItems : this.selectedInvoice.invoiceItems.map(i => {
+        return {
+          itemId : i.item.id,
+          quantity : i.quantity,
+          discount : i.discount, 
+          price : i.price,
+          purchcasePrice : i.purchcasePrice,
+          vatTypeId : i.item.vatType.id
+        }
+      })
+    };
+
+
+    if(!this.selectedInvoice.id){
+      // add invoice
+      console.log('add invoice');
+      console.log(invoiceDto);
+      invoiceDto.id = Guid.create().toString();
+      this._invoiceService.postInvoice(invoiceDto).subscribe({
+        next : () => {
+          this._toaster.success('Invoice added successfully');
+          this._router.navigate(['/invoices']);
+        }, 
+        error : (error) => {
+          this._toaster.danger(error.message);
+          console.log(error);
+          
+        }
+      });
+      return ;
+    }
+
+    // update invoice
+ 
+    console.log(invoiceDto);
+    
+    this._invoiceService.updateInvoice(invoiceDto).subscribe({
+      next: () => {
+        this._toaster.success('Invoice updated successfully');
+        this._router.navigate(['/invoices']);
+      },
+      error: (error) => {
+        console.log(error);
+        
+        this._toaster.danger(error.message);
+      }
+    });
+
+
   }
 
   addQuantity(invoiceItem : InvoiceItem) : void {

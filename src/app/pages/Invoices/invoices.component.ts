@@ -6,6 +6,7 @@ import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort, Sort } from '@angular/material/sort';
+import { Guid } from 'typescript-guid';
 
 
 @Component({
@@ -103,8 +104,51 @@ export class InvoicesComponent implements OnInit{
   }
 
   addInvoice(): void {
-    // Add the implementation here
-    console.log("addInvoice");
+
+    const invoice = {
+      id : '',
+      customer : {
+        id : '',
+        customerCategory : {
+          id : '',
+          category : ''
+        },
+        customerPayementTerm : {
+          id : '',
+          payementTerm : '',
+          payementTermCode : ''
+        },
+        customerNumber : 0,
+        customerName : '',
+        customerPhoneNumber : '',
+        customerFaxNumber : '',
+        customerEmail : '',
+        customerVatNumber : '',
+        registeredVat : false,
+        address : {
+          id: '',
+          street: '',
+          number: '',
+          box: '',
+          complement: '',
+          cityName: '',
+          zipCode: '',
+          type: ''
+        }
+      },
+      invoiceNumber : 0,
+      totalAmountExcVat : 0,
+      totalVatAmount : 0,
+      flagAccounting : false,
+      invoiceItems : [],
+      invoiceDate : new Date(),
+      invoiceDueDate : new Date().setDate(new Date().getDate() + 10)
+
+    } as unknown as Invoice;
+
+    this._invoiceService.setInvoice(invoice);
+
+    this._router.navigate(['addOrEditInvoice']);
   }
 
 }

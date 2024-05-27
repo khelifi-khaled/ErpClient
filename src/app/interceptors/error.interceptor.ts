@@ -15,22 +15,22 @@ export class ErrorInterceptor implements HttpInterceptor {
       
       switch (xhr.status){
         case 400: 
-          this._toaster.danger(xhr.error.message);  
+          xhr.error.errors.forEach((error: any) => {this._toaster.danger(error.description,error.code)});
         break;
         case 401:
-          this._toaster.danger('You are not authorized to do this operation');
+          xhr.error.errors.forEach((error: any) => {this._toaster.danger(error.description,error.code)});
           break;
         case 403:
-          this._toaster.danger('You are not allowed to do this operation');
+          xhr.error.errors.forEach((error: any) => {this._toaster.danger(error.description,error.code)});
           break;
         case 404: 
-          this._toaster.danger(xhr.error.message);
+          xhr.error.errors.forEach((error: any) => {this._toaster.danger(error.description,error.code)});
           break;
         case 500:
-          this._toaster.danger('You have error server, you need to contact technical support please');
+          xhr.error.errors.forEach((error: any) => {this._toaster.danger(error.description,error.code)});
           break;
         default:
-          this._toaster.danger('Something went wrong...');
+          xhr.error.errors.forEach((error: any) => {this._toaster.danger(error.description,error.code)});
           break;
       };
       
